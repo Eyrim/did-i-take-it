@@ -1,6 +1,5 @@
 package com.example.diditakeit
 
-import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,7 +23,10 @@ class MainActivity : ComponentActivity() {
             applicationContext,
             AppDatabase::class.java,
             "dev"
-        ).createFromAsset(getString(R.raw.dev)).build();
+        )
+            .createFromAsset("dev_1.db")
+            .allowMainThreadQueries() //TODO: Remove me see iss2
+            .build();
 
         setContent {
             DidITakeItTheme {
@@ -33,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ITookItButton(text = database.drugDao().getAll()[0].toString())
+                    ITookItButton(text = database.drugDao().getAll().toString())
                 }
             }
         }
