@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.room.Room
 import com.example.diditakeit.database.AppDatabase
 import com.example.diditakeit.ui.components.itookit.ITookItButton
+import com.example.diditakeit.ui.components.itookit.RecentDrugLazyColumn
 import com.example.diditakeit.ui.theme.DidITakeItTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,6 +37,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     ITookItButton(text = database.drugDao().getAll().toString())
+                    RecentDrugLazyColumn()
                 }
             }
         }
